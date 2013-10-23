@@ -5,6 +5,7 @@ seajs.config({
   base:'/js',
   alias:{
     'jquery':'radish/lib/jquery-2.0.3',
+    'jquery.cookie':'radish/lib/jquery.cookie',
     'lodash':'radish/lib/lodash',
     'underscore':'radish/lib/underscore',
     'backbone':'radish/lib/backbone',

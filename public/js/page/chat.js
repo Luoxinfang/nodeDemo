@@ -2,11 +2,15 @@
  * Created by luoxinfang on 13-10-21.
  */
 define(function(require){
-  require('jquery');
+  require('jquery.cookie');
   require('lodash');
 
+
+  var user = $.cookie('user');
   var socket = io.connect('http://localhost');
-  socket.emit('online',{name: 'radish'});
+
+
+  socket.emit('online',{user: user});
   socket.on('online',function(data){
     $('#tooltip').text(data);
     $('#tooltip').show(100).delay(3000).hide(500);

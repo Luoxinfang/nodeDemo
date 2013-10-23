@@ -1,0 +1,85 @@
+body{
+	margin-top: 70px;
+}
+.welcome{
+	float: right;
+	margin: 15px;
+}
+.row {
+	margin-bottom: 10px;
+}
+#btn_login,#btn_reg{
+	margin-left: 15px;
+}
+#btn_user{
+	margin-top: 13px;
+}
+#btn_user .btn{
+	padding: 0px;
+	float: none;
+}
+.input-on-light {
+	border-radius: 4px;
+	border: 1px solid #bbb;
+	color: #3c3d3f;
+	display: block;
+	font-size: 12px;
+	margin: 0px 0 10px 0;
+	padding: 5px 10px;
+	transition: all .2s linear;
+}
+.postList .title{
+	border-bottom: dashed 1px #cccccc;
+}
+.postList .info{
+	color: #cccccc;
+	text-align: right;
+}
+.postList li:hover{
+	background-color: #dddddd;
+	cursor: pointer;
+}
+.postContent .info{
+	text-align: right;
+	color: #cccccc;
+}
+.postContent .content{
+	margin-top: 15px;
+	padding: 10px 0;
+	border-top: dashed 1px #cccccc;
+}
+.chatRoom{
+	border: solid 1px #cccccc;
+	height: 600px;
+	background: #eeeeee;
+}
+.chatRoom .panel{
+	border: none;
+}
+.chatRoom a[data-toggle='tooltip']{
+	float: right;
+}
+.chatRoom .row{
+	border-bottom: solid 1px #cccccc;
+	border-top: solid 1px #cccccc;
+}
+.chatRoom .row:after{
+	clear: none;
+}
+.chatRoom .userList,.chatRoom .row{
+	height: 500px;
+}
+.chatRoom .infoList{
+	height: 400px;
+}
+#myInfo{
+	height: 90px;
+	background-color: #ffffff;
+	display: block;
+}
+.chatRoom .userList{
+	border-left: solid 1px #cccccc;
+}
+.chatRoom .footer{
+	text-align: center;
+}

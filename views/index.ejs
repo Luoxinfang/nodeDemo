@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="bootstrap3.0/css/bootstrap.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<%- include inc/header %>
+<div class="row">
+	<div class="postList col-md-3">
+		<ul class="list-group">
+			<% posts.forEach(function(post, index){ %>
+			<li class="list-group-item" data-id="<%= post._id %>">
+				<div class="title"><%= post.title %></div>
+				<div class="info"><%= post.author %> at <%= post.time %></div>
+			</li>
+			<% }) %>
+		</ul>
+	</div>
+	<div class="postContent col-md-8">
+
+	</div>
+</div>
+
+<%- include inc/footer %>
+<script type="text/javascript">
+	seajs.use('page/index');
+</script>
+</body>
+</html>

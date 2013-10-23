@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title><%= title %></title>
+	<link rel="stylesheet" href="bootstrap3.0/css/bootstrap.css">
+	<link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<%- include inc/header %>
+<div class="chatRoom panel col-md-8 col-md-offset-2">
+	<div class="panel-heading">
+		chat room
+		<a href="javascript:void(0);" id="tooltip" data-toggle="tooltip" title="tips"></a>
+	</div>
+	<div class="row">
+		<div class="col-md-9">
+			<div class="infoList">
+
+			</div>
+			<div id="myInfo" contenteditable="true"></div>
+		</div>
+
+		<div class="userList col-md-1">
+
+		</div>
+	</div>
+	<div class="footer">
+		<button type="reset" class="btn btn-default">
+			<span class="glyphicon glyphicon-wrench"></span> Clear history
+		</button>
+		<button type="reset" class="btn btn-default">
+			<span class="glyphicon glyphicon-trash"></span> Reset
+		</button>
+		<button id="btn_send" type="button" class="btn btn-default">
+			<span class="glyphicon glyphicon-send"></span> Send
+		</button>
+	</div>
+</div>
+
+
+<%- include inc/footer %>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	seajs.use('page/chat');
+</script>
+</body>
+</html>

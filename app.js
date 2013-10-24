@@ -4,7 +4,6 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var MongoStore = require('connect-mongo')(express);
@@ -49,6 +48,7 @@ server.listen(app.get('port'), function () {
 
 var io = require('socket.io').listen(server);
 var Chat= require('./models/chat');
+
 io.sockets.on('connection',function(socket){
   new Chat(socket);
 });

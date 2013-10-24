@@ -56,7 +56,7 @@ module.exports = function (app) {
       req.session.user = user;
       req.flash('success', 'welcome you ' + user.name);
       res.redirect('/');
-    })
+    });
   });
   app.get('/logout', User.checkLogin);
   app.get('/logout', function (req, res) {
@@ -140,8 +140,8 @@ module.exports = function (app) {
       success: '',
       error: ''
     });
-    //when
-    res.cookie('user', req.session.user, {maxAge: 1000 * 60 * 60 * 24 * 30});
+    //write cookie when login
+    res.cookie('user', JSON.stringify(req.session.user), {maxAge: 1000 * 60 * 60 * 24 * 30});
   });
 
   app.use(function (req, res) {

@@ -1,6 +1,9 @@
 body{
 	margin-top: 70px;
 }
+.red{
+	color: #ff0000;
+}
 .welcome{
 	float: right;
 	margin: 15px;

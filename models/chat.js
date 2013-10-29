@@ -33,14 +33,28 @@ Chat.prototype.init = function () {
     socket.broadcast.emit('say', data);
   });
 
-
-  //
+  //connect
+  socket.on('connection',function(data){
+    var user = data.user;
+    users.push(user);
+    socket.user = user;
+    socket.broadcast.emit('enter', {
+      tip: user.name + ' online',
+      users: users
+    });
+    that.welcome({
+      tip: 'welcome you ' + user.name,
+      users: users
+    });
+  });
+  //disconnect
   socket.on('disconnect', function () {
     socket.broadcast.emit('leave', socket.user);
     users = _.reject(users, function (user) {
       return _.isEqual(socket.user, user);
     });
   });
+
 };
 Chat.prototype.welcome = function (data) {
   this.socket.emit('welcome', data);

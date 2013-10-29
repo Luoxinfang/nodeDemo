@@ -88,6 +88,7 @@ ul,li{margin: 0;padding: 0;}
 #myInfo{
 	height: 90px;
 	background-color: #ffffff;
+	border: solid 1px #19469D;
 	display: block;
 }
 .chatRoom .userList{

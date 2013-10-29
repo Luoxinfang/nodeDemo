@@ -5,7 +5,6 @@ define(function (require) {
   require('jquery.cookie');
   require('lodash');
 
-
   var m = {
     user: {},
     socket: {},
@@ -18,6 +17,10 @@ define(function (require) {
 
       socket.emit('enter', {user: user});
       socket.on('enter', function (data) {
+        m.showTip(data.tip);
+        m.initUserList(data.users);
+      });
+      socket.on('connection', function (data) {
         m.showTip(data.tip);
         m.initUserList(data.users);
       });
@@ -55,10 +58,10 @@ define(function (require) {
       $('#tooltip').text(data).show(100).delay(3500).hide(400);
     },
     sendMsg: function () {
-      var content = encodeURIComponent($('#myInfo').html());
+      var content = $('#myInfo').html();
       $('.infoList').append('<div><span class="red"> ' + m.user.name + '</span>:' + content + '</div>');
       $('#myInfo').empty();
-      m.socket.emit('say', {user: m.user, content: content});
+      m.socket.emit('say', {user: m.user, content: encodeURIComponent(content)});
     },
     clearMsg:function(){
       $('.infoList').empty();
@@ -71,10 +74,19 @@ define(function (require) {
       _.forEach(list, function (user) {
         html.push('<li>' + user.name + '</li>')
       });
-      $('#userList').html(html.join(''))
+      $('#userList').html(html.join(''));
     },
     updateUserList: function (user) {
-
+      var users=[],userUl=$('#userList').children('li');
+      _.each(userUl,function(li){
+        users.push($(li).text());
+      });
+      var index= _.indexOf(users,user['name']);
+      if(index==-1){
+        $('#userList').append('<li>' + user.name + '</li>');
+      }else{
+        $('#userList').children('li').eq(index).remove();
+      }
     },
     bindEvent: function () {
       $('#btn_send').on('click', this.sendMsg);

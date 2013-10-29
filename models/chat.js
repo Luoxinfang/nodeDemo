@@ -36,7 +36,7 @@ Chat.prototype.init = function () {
 
   //
   socket.on('disconnect', function () {
-    socket.broadcast.emit('leave', socket.user.name + ' leave the room');
+    socket.broadcast.emit('leave', socket.user);
     users = _.reject(users, function (user) {
       return _.isEqual(socket.user, user);
     });

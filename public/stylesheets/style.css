@@ -1,6 +1,7 @@
 body{
 	margin-top: 70px;
 }
+ul,li{margin: 0;padding: 0;}
 .red{
 	color: #ff0000;
 }
@@ -18,7 +19,7 @@ body{
 	margin-top: 13px;
 }
 #btn_user .btn{
-	padding: 0px;
+	padding: 0;
 	float: none;
 }
 .input-on-light {
@@ -27,9 +28,8 @@ body{
 	color: #3c3d3f;
 	display: block;
 	font-size: 12px;
-	margin: 0px 0 10px 0;
+	margin: 0 0 10px 0;
 	padding: 5px 10px;
-	transition: all .2s linear;
 }
 .postList .title{
 	border-bottom: dashed 1px #cccccc;
@@ -74,6 +74,16 @@ body{
 }
 .chatRoom .infoList{
 	height: 400px;
+}
+#userList{
+	list-style: none;
+}
+#userList li{
+	padding: 1px;
+}
+#userList li:hover{
+	color: #ff0000;
+	cursor: pointer;
 }
 #myInfo{
 	height: 90px;

@@ -13,7 +13,7 @@ define(function (require) {
     buildSocket: function () {
       var user = JSON.parse($.cookie('user').toString());
       this.user = user;
-      var socket = io.connect('http://localhost');
+      var socket = io.connect('http://10.6.1.132');
       this.socket = socket;
 
       socket.emit('enter', {user: user});
@@ -21,9 +21,25 @@ define(function (require) {
         m.showTip(data.tip);
         m.initUserList(data.users);
       });
+      socket.on('welcome', function(data){
+        m.showTip(data.tip);
+        m.initUserList(data.users);
+      });
       socket.on('leave', m.showTip);
 
-      socket.on('welcome', m.showTip);
+      socket.on('reconnect', function() {
+        m.showTip('reconnect server ...');
+        setTimeout(function(){
+          socket.emit('enter', {user: user});
+        },2000);
+      });
+
+      socket.on('disconnect', function() {
+        m.showTip('reconnect server ...');
+        setTimeout(function(){
+          socket.emit('enter', {user: user});
+        },2000);
+      });
 
       socket.on('say', function (data) {
         var content = decodeURIComponent(data.content);

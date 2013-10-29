@@ -25,7 +25,10 @@ define(function (require) {
         m.showTip(data.tip);
         m.initUserList(data.users);
       });
-      socket.on('leave', m.showTip);
+      socket.on('leave', function(user){
+        m.showTip(user.name + 'leaved the room');
+        m.updateUserList(user);
+      });
 
       socket.on('reconnect', function() {
         m.showTip('reconnect server ...');
@@ -57,6 +60,12 @@ define(function (require) {
       $('#myInfo').empty();
       m.socket.emit('say', {user: m.user, content: content});
     },
+    clearMsg:function(){
+      $('.infoList').empty();
+    },
+    resetMsg:function(){
+      $('#myInfo').empty();
+    },
     initUserList: function (list) {
       var html = [];
       _.forEach(list, function (user) {
@@ -64,8 +73,13 @@ define(function (require) {
       });
       $('#userList').html(html.join(''))
     },
+    updateUserList: function (user) {
+
+    },
     bindEvent: function () {
       $('#btn_send').on('click', this.sendMsg);
+      $('#btn_reset').on('click',this.resetMsg);
+      $('#btn_clear').on('click',this.clearMsg);
     },
     init: function () {
       this.buildSocket();

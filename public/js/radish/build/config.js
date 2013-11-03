@@ -11,8 +11,8 @@ seajs.config({
     'backbone':'radish/lib/backbone',
     'bootstrap':'radish/lib/bootstrap',
     'Form':'radish/core/form',
-    'Date':'radish/core/date'
-
+    'Date':'radish/core/date',
+    'Key':'radish/core/key'
   }
 });
 

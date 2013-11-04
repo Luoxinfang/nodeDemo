@@ -2,28 +2,7 @@
  * Created by luoxinfang on 13-10-18.
  */
 define(function (require) {
-  require('jquery');
-//  require('backbone');
-
-/*  var Post = Backbone.Model.extend({
-    defaults: function () {
-      return {
-        title: '',
-        content: '',
-        author: '',
-        time: '',
-        _id: ''
-      }
-    }
-  });
-
-
-  var PostView = Backbone.Model.extend({
-    template: _.template($('#postContentTemp').html()),
-    events:{}
-  });*/
-
-
+  var $=require('jquery');
   var postList = {
     showPost: function (e) {
       var _id=$(this).data('id')|| e.state.id;

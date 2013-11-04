@@ -94,12 +94,7 @@ define(function (require) {
       $('#btn_send').on('click', this.sendMsg);
       $('#btn_reset').on('click', this.resetMsg);
       $('#btn_clear').on('click', this.clearMsg);
-      $('#myInfo').on('keydown keyup', Key.listen);
-      $('#myInfo').on('keyup', function (e) {
-        if (Key[17] == true) {
-          Key.mapping(e, 13, m.sendMsg);
-        }
-      });
+      Key.where('#myInfo',[17,13], this.sendMsg);
     },
     init: function () {
       this.buildSocket();

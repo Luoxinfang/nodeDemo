@@ -2,7 +2,7 @@
  * Created by luoxinfang on 13-10-18.
  */
 define(function (require) {
-  var $=require('jquery');
+  require('jquery');
   var postList = {
     showPost: function (e) {
       var _id=$(this).data('id')|| e.state.id;

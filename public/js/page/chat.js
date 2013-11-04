@@ -4,7 +4,7 @@
 define(function (require) {
   require('jquery.cookie');
   require('lodash');
-
+  var Key = require('Key');
   var m = {
     user: {},
     socket: {},
@@ -12,7 +12,7 @@ define(function (require) {
     buildSocket: function () {
       var user = JSON.parse($.cookie('user').toString());
       this.user = user;
-      var socket = io.connect('http://10.6.1.132');
+      var socket = io.connect('http://192.168.1.102');
       this.socket = socket;
 
       socket.emit('enter', {user: user});
@@ -24,27 +24,27 @@ define(function (require) {
         m.showTip(data.tip);
         m.initUserList(data.users);
       });
-      socket.on('welcome', function(data){
+      socket.on('welcome', function (data) {
         m.showTip(data.tip);
         m.initUserList(data.users);
       });
-      socket.on('leave', function(user){
+      socket.on('leave', function (user) {
         m.showTip(user.name + 'leaved the room');
         m.updateUserList(user);
       });
 
-      socket.on('reconnect', function() {
+      socket.on('reconnect', function () {
         m.showTip('reconnect server ...');
-        setTimeout(function(){
+        setTimeout(function () {
           socket.emit('enter', {user: user});
-        },2000);
+        }, 2000);
       });
 
-      socket.on('disconnect', function() {
+      socket.on('disconnect', function () {
         m.showTip('reconnect server ...');
-        setTimeout(function(){
+        setTimeout(function () {
           socket.emit('enter', {user: user});
-        },2000);
+        }, 2000);
       });
 
       socket.on('say', function (data) {
@@ -58,15 +58,17 @@ define(function (require) {
       $('#tooltip').text(data).show(100).delay(3500).hide(400);
     },
     sendMsg: function () {
-      var content = $('#myInfo').html();
-      $('.infoList').append('<div><span class="red"> ' + m.user.name + '</span>:' + content + '</div>');
-      $('#myInfo').empty();
+      var content = $('#myInfo').html(),
+        showHtml = '<div><span class="red"> ' + m.user.name + '</span>:' + content + '</div>';
+      $('.infoList').append(showHtml);
       m.socket.emit('say', {user: m.user, content: encodeURIComponent(content)});
+      $('#myInfo').empty();
+
     },
-    clearMsg:function(){
+    clearMsg: function () {
       $('.infoList').empty();
     },
-    resetMsg:function(){
+    resetMsg: function () {
       $('#myInfo').empty();
     },
     initUserList: function (list) {
@@ -77,21 +79,27 @@ define(function (require) {
       $('#userList').html(html.join(''));
     },
     updateUserList: function (user) {
-      var users=[],userUl=$('#userList').children('li');
-      _.each(userUl,function(li){
+      var users = [], userUl = $('#userList').children('li');
+      _.each(userUl, function (li) {
         users.push($(li).text());
       });
-      var index= _.indexOf(users,user['name']);
-      if(index==-1){
+      var index = _.indexOf(users, user['name']);
+      if (index == -1) {
         $('#userList').append('<li>' + user.name + '</li>');
-      }else{
+      } else {
         $('#userList').children('li').eq(index).remove();
       }
     },
     bindEvent: function () {
       $('#btn_send').on('click', this.sendMsg);
-      $('#btn_reset').on('click',this.resetMsg);
-      $('#btn_clear').on('click',this.clearMsg);
+      $('#btn_reset').on('click', this.resetMsg);
+      $('#btn_clear').on('click', this.clearMsg);
+      $('#myInfo').on('keydown keyup', Key.listen);
+      $('#myInfo').on('keyup', function (e) {
+        if (Key[17] == true) {
+          Key.mapping(e, 13, m.sendMsg);
+        }
+      });
     },
     init: function () {
       this.buildSocket();

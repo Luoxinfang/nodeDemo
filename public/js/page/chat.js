@@ -12,7 +12,7 @@ define(function (require) {
     buildSocket: function () {
       var user = JSON.parse($.cookie('user').toString());
       this.user = user;
-      var socket = io.connect('http://192.168.1.102');
+      var socket = io.connect('http://localhost');
       this.socket = socket;
 
       socket.emit('enter', {user: user});

@@ -5,7 +5,7 @@ define(function (require) {
     keyCode:{},
     setKeyStatus: function (code, status) {
       this.keyCode[code] = status;
-      //console.log(code, status)
+      console.log(code, status)
     }
   };
   Key.listen = function (_el, _keys) {

@@ -94,7 +94,7 @@ define(function (require) {
       $('#btn_send').on('click', this.sendMsg);
       $('#btn_reset').on('click', this.resetMsg);
       $('#btn_clear').on('click', this.clearMsg);
-      Key.where('#myInfo',[17,13], this.sendMsg);
+      Key.where('#myInfo',[17,13], this.sendMsg);//ctrl+enter to send msg
     },
     init: function () {
       this.buildSocket();

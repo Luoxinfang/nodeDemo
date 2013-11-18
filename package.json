@@ -7,10 +7,13 @@
   },
   "dependencies": {
     "express": "3.4.0",
-	  "ejs":"*",
-    "mongodb":"*",
-    "connect-mongo":"*",
+    "ejs": "*",
+    "mongodb": "*",
+    "connect-mongo": "*",
     "connect-flash": "*",
     "socket.io": "*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1"
   }
 }
